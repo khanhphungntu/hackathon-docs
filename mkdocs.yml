@@ -2,3 +2,4 @@ site_name: Hackathon API
 nav:
     - Card Service: index.md
     - Backend: index.md
+theme: readthedocs
