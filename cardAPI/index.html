@@ -50,11 +50,19 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Card Service</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#create-account-api">Create account API</a>
+    <li class="toctree-l2"><a class="reference internal" href="#add-credit-card-api">Add credit card API</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#success-response">Success Response</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#error-responses">Error Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#remove-credit-card-api">Remove credit card API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#success-response_1">Success Response</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-responses_1">Error Responses</a>
     </li>
         </ul>
     </li>
@@ -98,28 +106,55 @@
             <div class="section">
               
                 <h1 id="e-commerce-api">E-commerce API</h1>
-<p><strong>HOST</strong>: http:localhost:8000</p>
-<h2 id="create-account-api">Create account API</h2>
-<p><strong>URL</strong> : <code>/platform/create</code></p>
+<p><strong>HOST</strong>: <code>https://e-context-279708.df.r.appspot.com</code></p>
+<h2 id="add-credit-card-api">Add credit card API</h2>
+<p><strong>URL</strong> : <code>/card/add</code></p>
 <p><strong>Method</strong> : <code>POST</code></p>
 <p><strong>Body request</strong></p>
 <pre><code class="json">{
-    &quot;email&quot;: &quot;email@gmail.com&quot;,
-    &quot;password&quot;: &quot;123456&quot;,
-    &quot;name&quot;: &quot;Visa&quot;
+    &quot;email&quot;: &quot;khanh26688@gmail.com&quot;,
+    &quot;card_number&quot;: &quot;1234567891012345&quot;, // must be 16 digits
+    &quot;full_name&quot;: &quot;Khanh&quot;,
+    &quot;expiry_date&quot;: &quot;12/23&quot;,
+    &quot;ccv&quot;: 686 //must be length of 3
 }
 </code></pre>
 
 <h3 id="success-response">Success Response</h3>
-<p><strong>Code</strong> : <code>200 Success</code></p>
+<p><strong>Code</strong> : <code>201 Created</code></p>
 <p><strong>Content example</strong></p>
-<pre><code class="json">    {&quot;Success&quot;: &quot;Account is created successfully!&quot;}
+<pre><code class="json">    {
+        &quot;email&quot;: &quot;khanh26688@gmail.com&quot;,
+        &quot;public_key&quot;: &quot;SSTSjgyG0njbhIWLoTepDmwPJQtn6yMy&quot;
+    }
 </code></pre>
 
 <h3 id="error-responses">Error Responses</h3>
-<p><strong>Condition</strong> : If email has already been registered.</p>
+<p><strong>Condition</strong> : If body content fields are not correct.</p>
 <p><strong>Code</strong> : <code>400 Bad Request</code></p>
-<p><strong>Content</strong> : <code>{"Error": "Email has already been registered"}</code></p>
+<p><strong>Content</strong> : <code>{"Error": "Details error wil be listed here"}</code></p>
+<h2 id="remove-credit-card-api">Remove credit card API</h2>
+<p><strong>URL</strong> : <code>/card/delete</code></p>
+<p><strong>Method</strong> : <code>DELETE</code></p>
+<p><strong>Body request</strong></p>
+<pre><code class="json">{
+    &quot;public_key&quot;: &quot;sYP6iAiSFKAi3rSt82hP8IC2jZyhnztk&quot;
+}
+</code></pre>
+
+<h3 id="success-response_1">Success Response</h3>
+<p><strong>Code</strong> : <code>200 Success</code></p>
+<p><strong>Content example</strong></p>
+<pre><code class="json">    {&quot;response&quot;: &quot;Record is deleted successfully!&quot;}
+</code></pre>
+
+<h3 id="error-responses_1">Error Responses</h3>
+<p><strong>Condition</strong> : If public key not found.</p>
+<p><strong>Code</strong> : <code>404 Not found</code></p>
+<p><strong>Content</strong> : <code>{"Error": "Public key does not match any record"}</code></p>
+<p><strong>Condition</strong> : If body content fields are not correct.</p>
+<p><strong>Code</strong> : <code>400 Bad Request</code></p>
+<p><strong>Content</strong> : <code>{"Error": "An error occur"}</code></p>
               
             </div>
           </div>
