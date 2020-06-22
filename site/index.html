@@ -58,11 +58,19 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#remove-credit-card-api">Remove credit card API</a>
+    <li class="toctree-l2"><a class="reference internal" href="#view-credit-card-api">View credit card API</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#success-response_1">Success Response</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#error-responses_1">Error Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#remove-credit-card-api">Remove credit card API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#success-response_2">Success Response</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-responses_2">Error Responses</a>
     </li>
         </ul>
     </li>
@@ -112,7 +120,7 @@
                 <h1 id="e-commerce-api">E-commerce API</h1>
 <p><strong>HOST</strong>: <code>https://e-context-279708.df.r.appspot.com</code></p>
 <h2 id="add-credit-card-api">Add credit card API</h2>
-<p><strong>URL</strong> : <code>/card/add</code></p>
+<p><strong>URL</strong> : <code>/card/</code></p>
 <p><strong>Method</strong> : <code>POST</code></p>
 <p><strong>Body request</strong></p>
 <pre><code class="json">{
@@ -137,22 +145,39 @@
 <p><strong>Condition</strong> : If body content fields are not correct.</p>
 <p><strong>Code</strong> : <code>400 Bad Request</code></p>
 <p><strong>Content</strong> : <code>{"Error": "Details error wil be listed here"}</code></p>
-<h2 id="remove-credit-card-api">Remove credit card API</h2>
-<p><strong>URL</strong> : <code>/card/delete</code></p>
-<p><strong>Method</strong> : <code>DELETE</code></p>
-<p><strong>Body request</strong></p>
-<pre><code class="json">{
-    &quot;public_key&quot;: &quot;sYP6iAiSFKAi3rSt82hP8IC2jZyhnztk&quot;
-}
+<h2 id="view-credit-card-api">View credit card API</h2>
+<p><strong>URL</strong> : <code>/card/&lt;int:public_key&gt;</code></p>
+<p><strong>Method</strong> : <code>GET</code></p>
+<h3 id="success-response_1">Success Response</h3>
+<p><strong>Code</strong> : <code>200 Success</code></p>
+<p><strong>Content example</strong></p>
+<pre><code class="json">    {
+    &quot;public_key&quot;: &quot;BDjqIuAhhR29ZZ8s1RwTtEwc2NP3zeVh&quot;,
+    &quot;card_details&quot;: {
+        &quot;full_name&quot;: &quot;Khanh&quot;,
+        &quot;expiry_date&quot;: &quot;12/23&quot;,
+        &quot;card_number&quot;: &quot;1234567891012345&quot;,
+        &quot;ccv&quot;: 686
+    }
 </code></pre>
 
-<h3 id="success-response_1">Success Response</h3>
+<h3 id="error-responses_1">Error Responses</h3>
+<p><strong>Condition</strong> : If public key not found.</p>
+<p><strong>Code</strong> : <code>404 Not found</code></p>
+<p><strong>Content</strong> : <code>{"Error": "Public key does not match any record"}</code></p>
+<p><strong>Condition</strong> : If body content fields are not correct.</p>
+<p><strong>Code</strong> : <code>400 Bad Request</code></p>
+<p><strong>Content</strong> : <code>{"Error": "An error occur"}</code></p>
+<h2 id="remove-credit-card-api">Remove credit card API</h2>
+<p><strong>URL</strong> : <code>/card/&lt;int:public_key&gt;</code></p>
+<p><strong>Method</strong> : <code>DELETE</code></p>
+<h3 id="success-response_2">Success Response</h3>
 <p><strong>Code</strong> : <code>200 Success</code></p>
 <p><strong>Content example</strong></p>
 <pre><code class="json">    {&quot;response&quot;: &quot;Record is deleted successfully!&quot;}
 </code></pre>
 
-<h3 id="error-responses_1">Error Responses</h3>
+<h3 id="error-responses_2">Error Responses</h3>
 <p><strong>Condition</strong> : If public key not found.</p>
 <p><strong>Code</strong> : <code>404 Not found</code></p>
 <p><strong>Content</strong> : <code>{"Error": "Public key does not match any record"}</code></p>
@@ -212,5 +237,5 @@
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-06-22 07:32:25.847279+00:00
+Build Date UTC : 2020-06-22 10:09:15.741228+00:00
 -->

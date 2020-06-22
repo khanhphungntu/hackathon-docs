@@ -4,7 +4,7 @@
 
 ## Add credit card API
 
-**URL** : `/card/add`
+**URL** : `/card/`
 
 **Method** : `POST`
 
@@ -42,19 +42,51 @@
 **Content** : `{"Error": "Details error wil be listed here"}`
 
 
-## Remove credit card API
 
-**URL** : `/card/delete`
+## View credit card API
 
-**Method** : `DELETE`
+**URL** : `/card/<int:public_key>`
 
-**Body request**
+**Method** : `GET`
+
+### Success Response
+
+**Code** : `200 Success`
+
+**Content example**
 
 ```json
-{
-	"public_key": "sYP6iAiSFKAi3rSt82hP8IC2jZyhnztk"
-}
+	{
+    "public_key": "BDjqIuAhhR29ZZ8s1RwTtEwc2NP3zeVh",
+    "card_details": {
+        "full_name": "Khanh",
+        "expiry_date": "12/23",
+        "card_number": "1234567891012345",
+        "ccv": 686
+    }
 ```
+
+### Error Responses
+
+**Condition** : If public key not found.
+
+**Code** : `404 Not found`
+
+**Content** : `{"Error": "Public key does not match any record"}`
+
+
+**Condition** : If body content fields are not correct.
+
+**Code** : `400 Bad Request`
+
+**Content** : `{"Error": "An error occur"}`
+
+
+## Remove credit card API
+
+**URL** : `/card/<int:public_key>`
+
+**Method** : `DELETE`
 
 ### Success Response
 
