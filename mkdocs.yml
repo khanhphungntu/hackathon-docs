@@ -4,4 +4,5 @@ nav:
     - Backend: backend.md
     - Invoice API: invoiceAPI.md
     - Auth Token: authToken.md
+    - Test Card: card.md
 theme: readthedocs
