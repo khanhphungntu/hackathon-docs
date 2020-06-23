@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Backend";
+    var mkdocs_page_name = "Card Service";
     var mkdocs_page_input_path = "index.md";
     var mkdocs_page_url = null;
   </script>
@@ -47,18 +47,46 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="cardAPI/">Card Service</a>
-                    </li>
-                </ul>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Backend</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Card Service</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a>
+    <li class="toctree-l2"><a class="reference internal" href="#add-credit-card-api">Add credit card API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#success-response">Success Response</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#project-layout">Project layout</a>
+    <li class="toctree-l3"><a class="reference internal" href="#error-responses">Error Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#view-credit-card-api">View credit card API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#success-response_1">Success Response</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-responses_1">Error Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#remove-credit-card-api">Remove credit card API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#success-response_2">Success Response</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-responses_2">Error Responses</a>
+    </li>
+        </ul>
     </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="backend/">Backend</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="invoiceAPI/">Invoice API</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="authToken/">Auth Token</a>
                     </li>
                 </ul>
       </div>
@@ -82,7 +110,7 @@
     
       
     
-    <li>Backend</li>
+    <li>Card Service</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -93,21 +121,73 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+                <h1 id="e-commerce-api">E-commerce API</h1>
+<p><strong>HOST</strong>: <code>https://e-context-279708.df.r.appspot.com</code></p>
+<h2 id="add-credit-card-api">Add credit card API</h2>
+<p><strong>URL</strong> : <code>/card/</code></p>
+<p><strong>Method</strong> : <code>POST</code></p>
+<p><strong>Body request</strong></p>
+<pre><code class="json">{
+    &quot;email&quot;: &quot;khanh26688@gmail.com&quot;,
+    &quot;card_number&quot;: &quot;1234567891012345&quot;, // must be 16 digits
+    &quot;full_name&quot;: &quot;Khanh&quot;,
+    &quot;expiry_date&quot;: &quot;12/23&quot;,
+    &quot;ccv&quot;: 686 //must be length of 3
+}
 </code></pre>
+
+<h3 id="success-response">Success Response</h3>
+<p><strong>Code</strong> : <code>201 Created</code></p>
+<p><strong>Content example</strong></p>
+<pre><code class="json">    {
+        &quot;email&quot;: &quot;khanh26688@gmail.com&quot;,
+        &quot;public_key&quot;: &quot;SSTSjgyG0njbhIWLoTepDmwPJQtn6yMy&quot;
+    }
+</code></pre>
+
+<h3 id="error-responses">Error Responses</h3>
+<p><strong>Condition</strong> : If body content fields are not correct.</p>
+<p><strong>Code</strong> : <code>400 Bad Request</code></p>
+<p><strong>Content</strong> : <code>{"Error": "Details error wil be listed here"}</code></p>
+<h2 id="view-credit-card-api">View credit card API</h2>
+<p><strong>URL</strong> : <code>/card/&lt;int:public_key&gt;</code></p>
+<p><strong>Method</strong> : <code>GET</code></p>
+<h3 id="success-response_1">Success Response</h3>
+<p><strong>Code</strong> : <code>200 Success</code></p>
+<p><strong>Content example</strong></p>
+<pre><code class="json">    {
+    &quot;public_key&quot;: &quot;BDjqIuAhhR29ZZ8s1RwTtEwc2NP3zeVh&quot;,
+    &quot;card_details&quot;: {
+        &quot;full_name&quot;: &quot;Khanh&quot;,
+        &quot;expiry_date&quot;: &quot;12/23&quot;,
+        &quot;card_number&quot;: &quot;1234567891012345&quot;,
+        &quot;ccv&quot;: 686
+    }
+</code></pre>
+
+<h3 id="error-responses_1">Error Responses</h3>
+<p><strong>Condition</strong> : If public key not found.</p>
+<p><strong>Code</strong> : <code>404 Not found</code></p>
+<p><strong>Content</strong> : <code>{"Error": "Public key does not match any record"}</code></p>
+<p><strong>Condition</strong> : If body content fields are not correct.</p>
+<p><strong>Code</strong> : <code>400 Bad Request</code></p>
+<p><strong>Content</strong> : <code>{"Error": "An error occur"}</code></p>
+<h2 id="remove-credit-card-api">Remove credit card API</h2>
+<p><strong>URL</strong> : <code>/card/&lt;int:public_key&gt;</code></p>
+<p><strong>Method</strong> : <code>DELETE</code></p>
+<h3 id="success-response_2">Success Response</h3>
+<p><strong>Code</strong> : <code>200 Success</code></p>
+<p><strong>Content example</strong></p>
+<pre><code class="json">    {&quot;response&quot;: &quot;Record is deleted successfully!&quot;}
+</code></pre>
+
+<h3 id="error-responses_2">Error Responses</h3>
+<p><strong>Condition</strong> : If public key not found.</p>
+<p><strong>Code</strong> : <code>404 Not found</code></p>
+<p><strong>Content</strong> : <code>{"Error": "Public key does not match any record"}</code></p>
+<p><strong>Condition</strong> : If body content fields are not correct.</p>
+<p><strong>Code</strong> : <code>400 Bad Request</code></p>
+<p><strong>Content</strong> : <code>{"Error": "An error occur"}</code></p>
               
             </div>
           </div>
@@ -115,8 +195,8 @@ docs/
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="backend/" class="btn btn-neutral float-right" title="Backend">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="cardAPI/" class="btn btn-neutral" title="Card Service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -142,8 +222,8 @@ docs/
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="cardAPI/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+        <span style="margin-left: 15px"><a href="backend/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -161,5 +241,5 @@ docs/
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-06-22 06:39:43.886304+00:00
+Build Date UTC : 2020-06-23 09:17:25.604747+00:00
 -->
