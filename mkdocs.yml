@@ -3,4 +3,5 @@ nav:
     - Card Service: index.md
     - Backend: backend.md
     - Invoice API: invoiceAPI.md
+    - Auth Token: authToken.md
 theme: readthedocs
