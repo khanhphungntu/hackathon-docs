@@ -4,7 +4,7 @@
 
 ## Add credit card API
 
-**URL** : `/card/`
+**URL** : `/transaction/`
 
 **Method** : `POST`
 
