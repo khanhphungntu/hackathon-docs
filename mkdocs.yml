@@ -1,7 +1,7 @@
 site_name: Hackathon API
 nav:
     - Card Service: index.md
-    - Backend: backend.md
+    - Transaction: transaction.md
     - Invoice API: invoiceAPI.md
     - Auth Token: authToken.md
     - Test Card: card.md

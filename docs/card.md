@@ -19,6 +19,12 @@
 </style>
 
 <h3>Test Data for Card</h3>
+<div>
+    <h6>Success data</h6>
+    <p>Account number of buyer: 4957030420210470 </p>
+    <p>Account number of seller: 4957030420210462 </p>
+</div>
+<h6>Card details</h6>
 <div style="overflow-x: scroll; border: 1px solid #cccccc">
     <table _ngcontent-c45="">
         <thead _ngcontent-c45="">

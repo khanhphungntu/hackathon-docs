@@ -1,4 +1,4 @@
-# E-commerce API
+# Card holder API
 
 **HOST**: `https://e-context-279708.df.r.appspot.com`
 
