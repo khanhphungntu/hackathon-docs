@@ -4,4 +4,5 @@ nav:
     - Backend: backend.md
     - Invoice API: invoiceAPI.md
     - Auth Token: authToken.md
+    - Card Service (Called by FE): cardAPI.md
 theme: readthedocs
