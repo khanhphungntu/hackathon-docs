@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Auth Token (Called by FE) - Hackathon API</title>
+  <title>Transaction - Hackathon API</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Auth Token (Called by FE)";
-    var mkdocs_page_input_path = "authToken.md";
+    var mkdocs_page_name = "Transaction";
+    var mkdocs_page_input_path = "transaction.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -51,22 +51,26 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">Card Service</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../transaction/">Transaction</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Transaction</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#add-credit-card-api">Add credit card API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#success-response">Success Response</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-responses">Error Responses</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../invoiceAPI/">Invoice API (Called by FE)</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Auth Token (Called by FE)</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#when-making-a-request-to-the-backend-always-pass-the-user-token-in-the-headers-authorization-field">When making a request to the Backend, always pass the user token in the Header's Authorization Field</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#error-responses">Error Responses</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../authToken/">Auth Token (Called by FE)</a>
                     </li>
                 </ul>
                 <ul>
@@ -102,7 +106,7 @@
     
       
     
-    <li>Auth Token (Called by FE)</li>
+    <li>Transaction</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -113,25 +117,33 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="e-commerce-api">E-commerce API</h1>
-<h3 id="when-making-a-request-to-the-backend-always-pass-the-user-token-in-the-headers-authorization-field">When making a request to the Backend, always pass the user token in the Header's Authorization Field</h3>
-<p><strong>Sample</strong>:</p>
-<pre><code class="javascript">import firebase from &quot;firebase&quot;;
-
-firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-      axios.get(`http://127.0.0.1:8000/get_invoice/1`, { headers: { Authorization: idToken } })
-      .then(res =&gt; {
-        console.log(res.data);
-
-      });
-    }).catch(function(error) {
-      // Handle error
-    });
+                <h1 id="transaction-api">Transaction API</h1>
+<p><strong>HOST</strong>: <code>https://e-context-279708.df.r.appspot.com</code></p>
+<h2 id="add-credit-card-api">Add credit card API</h2>
+<p><strong>URL</strong> : <code>/transaction/</code></p>
+<p><strong>Method</strong> : <code>POST</code></p>
+<p><strong>Body request</strong></p>
+<pre><code class="json">{
+    &quot;sender_key&quot;: &quot;0I4ZDiPP50q0BA3CsA1DqggSQgUmD6lf&quot;, //public key of buyer
+    &quot;recipient_key&quot;: &quot;t8YKfZM8Kgk58zVVK9qFhT4p0fJWLGUl&quot;,  // public key of seller
+    &quot;amount&quot;: 100,
+    &quot;currency&quot;: &quot;SGD&quot;
+}
 </code></pre>
 
-<h2 id="error-responses">Error Responses</h2>
-<p><strong>Condition</strong> : If token is not passed or wrong token is passed</p>
-<p><strong>Code</strong> : <code>401 Unauthorized</code></p>
+<h3 id="success-response">Success Response</h3>
+<p><strong>Code</strong> : <code>200 Ok</code></p>
+<p><strong>Content example</strong></p>
+<pre><code class="json">    {
+        &quot;response&quot;: &quot;Money is transfered successfully!&quot;,
+        &quot;transactionIdentifier&quot;: 819277640650270
+    }
+</code></pre>
+
+<h3 id="error-responses">Error Responses</h3>
+<p><strong>Condition</strong> : If body content fields are not correct.</p>
+<p><strong>Code</strong> : <code>404 Bad Request</code></p>
+<p><strong>Content</strong> : <code>{"Error": "Details error wil be listed here"}</code></p>
               
             </div>
           </div>
@@ -139,10 +151,10 @@ firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(id
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../cardAPI/" class="btn btn-neutral float-right" title="Card Service (Called by FE)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../invoiceAPI/" class="btn btn-neutral float-right" title="Invoice API (Called by FE)">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../invoiceAPI/" class="btn btn-neutral" title="Invoice API (Called by FE)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Card Service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -168,10 +180,10 @@ firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(id
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../invoiceAPI/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../cardAPI/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../invoiceAPI/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

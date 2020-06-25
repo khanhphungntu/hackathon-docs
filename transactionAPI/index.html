@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Auth Token (Called by FE) - Hackathon API</title>
+  <title>Transaction Service (Called by FE) - Hackathon API</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Auth Token (Called by FE)";
-    var mkdocs_page_input_path = "authToken.md";
+    var mkdocs_page_name = "Transaction Service (Called by FE)";
+    var mkdocs_page_input_path = "transactionAPI.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,14 +59,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../invoiceAPI/">Invoice API (Called by FE)</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Auth Token (Called by FE)</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#when-making-a-request-to-the-backend-always-pass-the-user-token-in-the-headers-authorization-field">When making a request to the Backend, always pass the user token in the Header's Authorization Field</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#error-responses">Error Responses</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../authToken/">Auth Token (Called by FE)</a>
                     </li>
                 </ul>
                 <ul>
@@ -77,8 +71,16 @@
                     <li class="toctree-l1"><a class="reference internal" href="../card/">Test Card</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../transactionAPI/">Transaction Service (Called by FE)</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Transaction Service (Called by FE)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#make-payment-api">Make Payment API</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#success-response">Success Response</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-responses">Error Responses</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
       </div>
@@ -102,7 +104,7 @@
     
       
     
-    <li>Auth Token (Called by FE)</li>
+    <li>Transaction Service (Called by FE)</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -114,24 +116,21 @@
             <div class="section">
               
                 <h1 id="e-commerce-api">E-commerce API</h1>
-<h3 id="when-making-a-request-to-the-backend-always-pass-the-user-token-in-the-headers-authorization-field">When making a request to the Backend, always pass the user token in the Header's Authorization Field</h3>
-<p><strong>Sample</strong>:</p>
-<pre><code class="javascript">import firebase from &quot;firebase&quot;;
-
-firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-      axios.get(`http://127.0.0.1:8000/get_invoice/1`, { headers: { Authorization: idToken } })
-      .then(res =&gt; {
-        console.log(res.data);
-
-      });
-    }).catch(function(error) {
-      // Handle error
-    });
+<p><strong>HOST</strong>: <code>http://35.223.80.52/</code></p>
+<h3 id="make-payment-api">Make Payment API</h3>
+<p><strong>URL</strong> : <code>/make_payment/&lt;invoice_id&gt;</code></p>
+<p><strong>Method</strong> : <code>POST</code></p>
+<h2 id="success-response">Success Response</h2>
+<p><strong>Code</strong> : <code>HTTP 201 CREATED</code></p>
+<p><strong>Content example</strong></p>
+<pre><code class="json">        {&quot;content&quot;: &quot;Transaction successful!&quot;, &quot;transaction_id&quot;: 2020202020 }
 </code></pre>
 
 <h2 id="error-responses">Error Responses</h2>
-<p><strong>Condition</strong> : If token is not passed or wrong token is passed</p>
-<p><strong>Code</strong> : <code>401 Unauthorized</code></p>
+<p><strong>Condition</strong> : If Transaction failed</p>
+<p><strong>Code</strong> : <code>400 Bad Request</code></p>
+<pre><code class="json">    {&quot;Error&quot;: &quot;Details error wil be listed here&quot;}
+</code></pre>
               
             </div>
           </div>
@@ -139,10 +138,8 @@ firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(id
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../cardAPI/" class="btn btn-neutral float-right" title="Card Service (Called by FE)">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../invoiceAPI/" class="btn btn-neutral" title="Invoice API (Called by FE)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../card/" class="btn btn-neutral" title="Test Card"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -168,10 +165,8 @@ firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(id
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../invoiceAPI/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../card/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../cardAPI/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
