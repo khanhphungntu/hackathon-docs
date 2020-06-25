@@ -4,7 +4,7 @@
 
 ## Add credit card API
 
-**URL** : `/save-card/`
+**URL** : `/save_card/`
 
 **Method** : `POST`
 
@@ -17,7 +17,7 @@
     "full_name": "Khanh",
     "expiry_date": "10/20",
     "ccv": "022",
-		"uid": "Yo6m5z2panXU4jDAtTuzoeTE3hH3"
+	"uid": "Yo6m5z2panXU4jDAtTuzoeTE3hH3"
 }
 ```
 
