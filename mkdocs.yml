@@ -2,8 +2,9 @@ site_name: Hackathon API
 nav:
     - Card Service: index.md
     - Transaction: transaction.md
-    - Invoice API: invoiceAPI.md
-    - Auth Token: authToken.md
+    - Invoice API (Called by FE): invoiceAPI.md
+    - Auth Token (Called by FE): authToken.md
     - Card Service (Called by FE): cardAPI.md
     - Test Card: card.md
+    - Transaction Service (Called by FE): transactionAPI.md
 theme: readthedocs
