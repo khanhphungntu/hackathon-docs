@@ -1,6 +1,6 @@
 # E-commerce API
 
-**HOST**: http:localhost:8000
+**HOST**: `http://35.223.80.52/`
 
 ### Create invoice API
 
