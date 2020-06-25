@@ -1,6 +1,6 @@
 # E-commerce API
 
-**HOST**: `http://35.223.80.52/`
+**HOST**: `https://khanhphungntu.ml/`
 
 ### Create invoice API
 
